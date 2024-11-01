@@ -12,18 +12,18 @@ const decryptBtn = document.querySelector("#decryptBtn");
 
 const alphabet = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
 const alphabetTable = [
-    "--------",  // 0
-    "-aąbcćde",  // 1
-    "-ęfghijk",  // 2
-    "-lłmnńoó",  // 3
-    "-pqrsśtu",  // 4
-    "-vwxyzźż"]; // 5
+    "        ",  // 0
+    " aąbcćde",  // 1
+    " ęfghijk",  // 2
+    " lłmnńoó",  // 3
+    " pqrsśtu",  // 4
+    " vwxyzźż"]; // 5
 //   01234567
 
 function encrypt(text, encKeyA, encKeyB){
     
     text = text.toLowerCase().trim();
-    let result = "";
+    let x = "";
 
     // Go through text
     for(let i = 0; i < text.length; i++){
@@ -32,35 +32,60 @@ function encrypt(text, encKeyA, encKeyB){
         if(alphabet.includes(text[i])){
             
             // Check in which table is this letter
-            for(let row = 1; row <= 5; row++){
-                if(alphabetTable[row].indexOf(text[i]) != -1){
+            for(let row = 1; row < alphabetTable.length; row++){
+
+                if(alphabetTable[row].indexOf(text[i]) != -1 && alphabetTable[row].indexOf(text[i]) != 0){
                     let col = alphabetTable[row].indexOf(text[i]);
                     
-                    result += `${row}${col}`;
+                    x += `${row}${col}`;
                 }
                 
             }
         }
     }
-    
-    return result;
+
+    // -- Level 2 of encoding add encrypting key
+    // before encrypting with key = x
+    // after encrypting with key = y
+    // encKeyA = a
+    // encKeyB = b
+    // y = ax + b
+
+    let y = (parseFloat(encKeyA * x)) + parseFloat(encKeyB);
+
+    return y;
 }
 
 function decrypt(encText, encKeyA, encKeyB){
     
-    encText = encText.trim();
+    // Delete white spaces
+    let y = encText.trim();
+
     let result = "";
 
-    for(let i = 0; i < encText.length; i+=2){
+    /// -- Level 2 of encoding remove encrypting key
+    // before decrypting with key = y
+    // after decrypting with key = x
+    // encKeyA = a
+    // encKeyB = b
+    // x = (y / a) - b
+
+    let x = ((y / encKeyA) - parseFloat(encKeyB)).toString();
+
+    // Go through encrypted text
+    for(let i = 0; i < x.length; i+=2){
         
-        if(encText[i+1] == undefined){
+        // Check paired numbers
+        if(x[i+1] == undefined){
             break;
         }
         
-        let row = encText[i];
-        let col = encText[i+1];
-
-        result += alphabetTable[row][col];
+        let row = x[i];
+        let col = x[i+1];
+        
+        // Check if number is in a range
+        if(row < alphabetTable.length && col < alphabetTable[1].length)
+            result += alphabetTable[row][col];
     }
 
     return result;
@@ -68,14 +93,25 @@ function decrypt(encText, encKeyA, encKeyB){
 
 
 encryptBtn.addEventListener("click", e => {
-    encryptedTextBox.value = encrypt(toEncryptedTextBox.value);
+    let text = toEncryptedTextBox.value;
+    let a = document.querySelector("#encKeyA").value;
+    let b = document.querySelector("#encKeyB").value;
+    
+    if(text && a && b)
+        encryptedTextBox.value = encrypt(text, a, b);
 })
 
 decryptBtn.addEventListener("click", e => {
-    decryptedTextBox.value = decrypt(toDecryptedTextBox.value);
+    let text = toDecryptedTextBox.value;
+    let a = document.querySelector("#decKeyA").value;
+    let b = document.querySelector("#decKeyB").value;
+    
+    console.log(text, a, b);
+    // if(text && a && b)
+        decryptedTextBox.value = decrypt(text, a, b);
 })
 
 
 
-encrypt("Siema", 1, 1);
-console.log(decrypt("2343363354312523171", 1, 1));
+// encrypt("Siema", 1, 1);
+console.log(decrypt("442517331200", 100, 100));

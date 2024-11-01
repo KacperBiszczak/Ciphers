@@ -12,7 +12,11 @@
     <div class="encryption">
         <h2> Encryption </h2>
         
-        <input type="text" id="toEncryptedTextBox">
+        <input type="text" id="toEncryptedTextBox" placeholder="Text to encrypt">
+        <input type="number" id="encKeyA" placeholder="First key" value="1">
+        <input type="number" id="encKeyB" placeholder="Second key" value="0">
+        <span> = > </span>
+
         <input type="text" id="encryptedTextBox" readonly>
 
         <input type="button" id="encryptBtn" value="Encrypt">
@@ -24,6 +28,10 @@
         <h2> Decryption </h2>
         
         <input type="text" id="toDecryptedTextBox">
+        <input type="number" id="decKeyA" placeholder="First key" value="1">
+        <input type="number" id="decKeyB" placeholder="Second key" value="0">
+        <span> = > </span>
+
         <input type="text" id="decryptedTextBox" readonly>
 
         <input type="button" id="decryptBtn" value="Decrypt"> 
