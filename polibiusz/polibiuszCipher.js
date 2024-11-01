@@ -70,7 +70,7 @@ function decrypt(encText, encKeyA, encKeyB){
     // encKeyB = b
     // x = (y / a) - b
 
-    let x = ((y / encKeyA) - parseFloat(encKeyB)).toString();
+    let x = ((y / encKeyA) - parseFloat(encKeyB / encKeyA)).toString();
 
     // Go through encrypted text
     for(let i = 0; i < x.length; i+=2){
@@ -106,8 +106,7 @@ decryptBtn.addEventListener("click", e => {
     let a = document.querySelector("#decKeyA").value;
     let b = document.querySelector("#decKeyB").value;
     
-    console.log(text, a, b);
-    // if(text && a && b)
+    if(text && a && b)
         decryptedTextBox.value = decrypt(text, a, b);
 })
 
