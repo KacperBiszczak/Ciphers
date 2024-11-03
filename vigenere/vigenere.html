@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Vigenere's cipher </title>
+</head>
+<body>
+    
+    <div class="wrapper">
+        <h1> Vigenere's cipher </h1>
+
+        <div class="container">
+            <div class="encryption">
+                <h2> Encryption </h2>
+                
+                <input type="text" id="toEncryptedTextBox" placeholder="Text to encrypt">
+                <!-- <input type="text" id="encKey" placeholder="Encryption key"> -->
+                <span> = > </span>
+
+                <input type="text" id="encryptedTextBox" readonly>
+
+                <input type="button" id="encryptBtn" value="Encrypt">
+            </div>
+
+            <hr>
+
+            <div class="decryption">
+                <h2> Decryption </h2>
+                
+                <input type="text" id="toDecryptedTextBox" placeholder="Text to decrypt">
+                <!-- <input type="text" id="decKey" placeholder="Decryption key"> -->
+                <span> = > </span>
+
+                <input type="text" id="decryptedTextBox" readonly>
+
+                <input type="button" id="decryptBtn" value="Decrypt"> 
+            </div>
+        </div>
+    </div>
+
+    <script src="vigenereCipher.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -113,4 +113,4 @@ decryptBtn.addEventListener("click", e => {
 
 
 // encrypt("Siema", 1, 1);
-console.log(decrypt("442517331200", 100, 100));
+// console.log(decrypt("442517331200", 100, 100));
