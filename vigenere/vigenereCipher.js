@@ -67,11 +67,35 @@ function encrypt(text, encryptingKey){
         
         counter = (counter >= encryptingKey.length-1) ? 0 : counter+1;
 
-        // console.log("git: " + row, col, alphabetTable[row][col]);
+        console.log("git: " + row, col, alphabetTable[row][col]);
         result += alphabetTable[row][col];
     }
     
     return result;
+}
+
+function decrypt(text, encryptingKey){
+    
+    let decryptedText = "";
+    for(let i = 0; i < text.length; i++){
+
+        // Looping by encrypting key (if it's shorter than text)
+        let encKeyChar = encryptingKey[i%encryptingKey.length];
+        console.log(encKeyChar);
+
+        // Looking for a valid row
+        alphabetTable.forEach(currAlphabet => {
+            if(currAlphabet[0] == encKeyChar){
+                console.log(currAlphabet);
+                decryptedCharIndex = currAlphabet.indexOf(text[i]);
+            }
+        });text
+        
+        decryptedText += alphabet[decryptedCharIndex];
+    }
+
+    return decryptedText;
+    
 }
 
 // Link a buttons
@@ -85,11 +109,4 @@ encryptBtn.addEventListener("click", ev =>{
 // console.log(encrypt("TO JEST BARDZO TAJNY TEKST", encryptingKey));
 // console.table(alphabetTable);
 
-/*
- toEncryptedTextBox
- encryptedTextBox
- toDecryptedTextBox
-decryptedTextBox
-encryptBtn
-decryptBtn
-*/
+console.log(decrypt("łińźet", encryptingKey));
