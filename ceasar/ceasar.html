@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Caesar's cipher </title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
     
-<h1>Ceasar's cipher</h1>
-
+    <h1>Ceasar's cipher</h1>
+    
     <div class="encryption">
         <h2> Encryption </h2>
         
-        <input type="text" id="toEncryptedTextBox">
+        <input type="text" id="toEncryptedTextBox" placeholder="Enter the text to encrypt">
+        <span class="arrows"> &#129095; </span>
         <input type="text" id="encryptedTextBox" readonly>
 
-        <input type="button" id="encryptBtn" value="Encrypt">
+        <input type="button" class ="btn" id="encryptBtn" value="Encrypt">
     </div>
 
     <hr>
@@ -23,10 +28,11 @@
     <div class="decryption">
         <h2> Decryption </h2>
         
-        <input type="text" id="toDecryptedTextBox">
+        <input type="text" id="toDecryptedTextBox" placeholder="Enter the encrypted text">
+        <span class="arrows"> &#129095; </span>
         <input type="text" id="decryptedTextBox" readonly>
 
-        <input type="button" id="decryptBtn" value="Decrypt">
+        <input type="button" class ="btn" id="decryptBtn" value="Decrypt">
         
     </div>
 
